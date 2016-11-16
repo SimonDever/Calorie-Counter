@@ -153,12 +153,14 @@ public class Log extends AppCompatActivity {
                     if(grandtotal >= Long.parseLong(cal_limit)) {
                         Long diff = grandtotal - Long.parseLong(cal_limit);
 
+                        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.priceisrighthorn);
+                        mp.start();
+
                         AlertDialog.Builder builder = new AlertDialog.Builder(Log.this); //Chanho: Dialogs are popup notifications that require users to interact with to get rid of.
                         builder.setMessage("Warning: You are " + diff.toString() + " calories over your limit!" ); //This dialog asks the user if they want to
                         builder.setPositiveButton("Whoops", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.priceisrighthorn);
-                                mp.start();
+
                             }
                         });
                         AlertDialog dialog = builder.create();
@@ -194,6 +196,9 @@ public class Log extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, text, duration); //Chanho: Toast is a popup notification that disappears automatically after a period of time
                     toast.show();
                 }
+            }
+            else {
+                log.setText("Log file not found!");
             }
         }
     }

@@ -16,6 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
+        android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_anchor="@+id/include"
         android:onClick="logOut"
         app:layout_anchorGravity="bottom|right"

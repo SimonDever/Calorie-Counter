@@ -16,7 +16,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/caloriecounter">
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name">
@@ -29,7 +29,7 @@
         <activity
             android:name=".DailyCalories"
             android:label="@string/title_activity_daily_calories"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/caloriecounter" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -50,20 +50,20 @@
         <activity
             android:name=".AddEntry"
             android:label="AddEntry"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/caloriecounter" />
         <activity
             android:name=".RegisterUser"
             android:label="@string/title_activity_register_user"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/caloriecounter" />
         <activity
             android:name=".Graph"
             android:label="Graph"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/caloriecounter" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:label="@string/title_activity_forgot_password"
             android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/caloriecounter">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cs180.team2.caloriecounter.LoginActivity" />
@@ -71,7 +71,7 @@
         <activity
             android:name=".AddFood"
             android:label="@string/title_activity_add_food"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/caloriecounter" />
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".Log"></activity>
     </application>
