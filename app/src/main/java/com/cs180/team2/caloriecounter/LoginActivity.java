@@ -383,21 +383,25 @@ public class LoginActivity extends AppCompatActivity {
         username = "";
         Intent intent = new Intent(this, DailyCalories.class);
         startActivity(intent);
+        finish();
     }
 
     public void dailyCalories() {
         Intent intent = new Intent(this, DailyCalories.class);
         startActivity(intent);
+        finish();
     }
 
     public void registerUser() {
         Intent intent = new Intent(this, RegisterUser.class);
         startActivity(intent);
+        finish();
     }
 
     public void registration(View view) {
         Intent intent = new Intent(this, RegisterUser.class);
         startActivity(intent);
+        finish();
     }
 
 
