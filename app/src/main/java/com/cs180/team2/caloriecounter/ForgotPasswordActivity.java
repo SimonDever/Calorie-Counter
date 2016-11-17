@@ -21,7 +21,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ForgotPasswordActivity.this); //Chanho: Dialogs are popup notifications that require users to interact with to get rid of.
         builder.setMessage("Did you forget your username or your password?"); //Asks for user name or password
-            //THIS IS GAY DONT USE THIS ACTIVITY
 
         builder.setPositiveButton("Username", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {

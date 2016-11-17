@@ -39,7 +39,6 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:id="@+id/textView7"
-       android:textAppearance="@android:style/TextAppearance.Material.Title"
        tools:text="LoginActivity.username"
         android:textSize="18sp"
         android:layout_alignParentTop="true"

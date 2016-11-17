@@ -158,14 +158,10 @@ public class DailyCalories extends AppCompatActivity {
         String Filename = Integer.toString(c.get(Calendar.MONTH)) + "." + Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "." + Integer.toString(c.get(Calendar.YEAR));
         Filename = Filename + "_" + username + ".txt";
         File file = new File(dir, Filename);
-        if(!file.getParentFile().exists()) {
-            if(file.getParentFile().mkdirs()) {
-                System.out.println(file.getParentFile() + " created!");
-            }
-
+        if(!file.exists()) {
             try {
-                System.out.println(file.getCanonicalPath() + " about to be created!");
-            } catch(IOException e) {
+                file.createNewFile();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

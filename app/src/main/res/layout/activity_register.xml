@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,15 +10,14 @@
     android:orientation="vertical">
 
 
-    <TextView
-        android:text="Calorie Counter Registration"
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView9"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        android:textStyle="normal|bold" />
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar5"
+        app:title="Register New User" />
 
     <TextView
         android:text="*Enter your full name"
@@ -25,8 +25,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView11"
         android:paddingTop="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <AutoCompleteTextView
         android:id="@+id/regFullName"
@@ -44,8 +43,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView13"
         android:paddingTop="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
@@ -63,8 +61,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView15"
         android:paddingTop="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <AutoCompleteTextView
         android:id="@+id/ipassword"
@@ -82,8 +79,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView14"
         android:paddingTop="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <AutoCompleteTextView
         android:id="@+id/irepassword"
@@ -101,8 +97,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView8"
         android:paddingTop="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <AutoCompleteTextView
         android:id="@+id/secretq"

@@ -61,10 +61,25 @@ public class Log extends AppCompatActivity {
         ArrayList<FoodEntry> lunch = new ArrayList<FoodEntry>();
         ArrayList<FoodEntry> dinner = new ArrayList<FoodEntry>();
         ArrayList<FoodEntry> snacks = new ArrayList<FoodEntry>();
-        TextView log = (TextView) findViewById(R.id.log);
+        TextView breakfast_log = (TextView) findViewById(R.id.breakfast_log);
+        TextView lunch_log = (TextView) findViewById(R.id.lunch_log);
+        TextView dinner_log = (TextView) findViewById(R.id.dinner_log);
+        TextView snacks_log = (TextView) findViewById(R.id.snacks_log);
+        TextView breakfast_title = (TextView) findViewById(R.id.breakfast_title);
+        TextView lunch_title = (TextView) findViewById(R.id.lunch_title);
+        TextView dinner_title = (TextView) findViewById(R.id.dinner_title);
+        TextView snacks_title = (TextView) findViewById(R.id.snacks_title);
 
         if(username.isEmpty()) {
-            log.setVisibility(View.INVISIBLE);
+            breakfast_log.setVisibility(View.INVISIBLE);
+            lunch_log.setVisibility(View.INVISIBLE);
+            dinner_log.setVisibility(View.INVISIBLE);
+            snacks_log.setVisibility(View.INVISIBLE);
+            lunch_title.setVisibility(View.INVISIBLE);
+            dinner_title.setVisibility(View.INVISIBLE);
+            snacks_title.setVisibility(View.INVISIBLE);
+            String create_account = "Please create an account to use the daily log!";
+            breakfast_title.setText(create_account);
         } else {
             if (file.exists()) {
                 try {
@@ -95,60 +110,62 @@ public class Log extends AppCompatActivity {
                             snacks.add(tempFood);
                         }
                     }
+
                     Long breakfasttotal = Long.valueOf(0);
                     Long lunchtotal = Long.valueOf(0);
                     Long dinnertotal = Long.valueOf(0);
                     Long snackstotal = Long.valueOf(0);
                     Long grandtotal = Long.valueOf(0);
-                    log.setText("Breakfast\n\n");
+
+                    breakfast_title.setText("Breakfast\n");
                     for(int i = 0; i < breakfast.size(); i++) {
-                        log.append("Name: " + breakfast.get(i).Name + "\n");
-                        log.append("Calories: " + breakfast.get(i).Calories.toString() + "\n");
-                        log.append("Description: " + breakfast.get(i).Description + "\n\n");
+                        breakfast_log.append("Name: " + breakfast.get(i).Name + "\n");
+                        breakfast_log.append("Calories: " + breakfast.get(i).Calories.toString() + "\n");
+                        breakfast_log.append("Description: " + breakfast.get(i).Description + "\n\n");
                         breakfasttotal = breakfasttotal + breakfast.get(i).Calories;
                     }
-                    log.append("Total Calories for Breakfast: " + breakfasttotal.toString() + "\n\n");
+                    breakfast_log.append("Total Calories for Breakfast: " + breakfasttotal.toString() + "\n\n");
                     if(breakfast.size() == 0) {
-                        log.append("Nothing in breakfast!\n");
+                        breakfast_log.append("Nothing in breakfast!\n");
                     }
 
-                    log.append("Lunch\n\n");
+                    lunch_title.setText("Lunch\n");
                     for(int i = 0; i < lunch.size(); i++) {
-                        log.append("Name: " + lunch.get(i).Name + "\n");
-                        log.append("Calories: " + lunch.get(i).Calories.toString() + "\n");
-                        log.append("Description: " + lunch.get(i).Description + "\n\n");
+                        lunch_log.append("Name: " + lunch.get(i).Name + "\n");
+                        lunch_log.append("Calories: " + lunch.get(i).Calories.toString() + "\n");
+                        lunch_log.append("Description: " + lunch.get(i).Description + "\n\n");
                         lunchtotal = lunchtotal + lunch.get(i).Calories;
                     }
-                    log.append("Total Calories for Lunch: " + lunchtotal.toString() + "\n\n");
-                    if(breakfast.size() == 0) {
-                        log.append("Nothing in lunch!\n");
+                    lunch_log.append("Total Calories for Lunch: " + lunchtotal.toString() + "\n\n");
+                    if(lunch.size() == 0) {
+                        lunch_log.append("Nothing in lunch!\n");
                     }
 
-                    log.append("Dinner\n\n");
+                    dinner_title.setText("Dinner\n");
                     for(int i = 0; i < dinner.size(); i++) {
-                        log.append("Name: " + dinner.get(i).Name + "\n");
-                        log.append("Calories: " + dinner.get(i).Calories.toString() + "\n");
-                        log.append("Description: " + dinner.get(i).Description + "\n\n");
+                        dinner_log.append("Name: " + dinner.get(i).Name + "\n");
+                        dinner_log.append("Calories: " + dinner.get(i).Calories.toString() + "\n");
+                        dinner_log.append("Description: " + dinner.get(i).Description + "\n\n");
                         dinnertotal = dinnertotal + dinner.get(i).Calories;
                     }
-                    log.append("Total Calories for Dinner: " + dinnertotal.toString() + "\n\n");
-                    if(breakfast.size() == 0) {
-                        log.append("Nothing in dinner!\n");
+                    dinner_log.append("Total Calories for Dinner: " + dinnertotal.toString() + "\n\n");
+                    if(dinner.size() == 0) {
+                        dinner_log.append("Nothing in dinner!\n");
                     }
 
-                    log.append("Snacks\n\n");
+                    snacks_title.setText("Snacks\n\n");
                     for(int i = 0; i < snacks.size(); i++) {
-                        log.append("Name: " + snacks.get(i).Name + "\n");
-                        log.append("Calories: " + snacks.get(i).Calories.toString() + "\n");
-                        log.append("Description: " + snacks.get(i).Description + "\n\n");
+                        snacks_log.append("Name: " + snacks.get(i).Name + "\n");
+                        snacks_log.append("Calories: " + snacks.get(i).Calories.toString() + "\n");
+                        snacks_log.append("Description: " + snacks.get(i).Description + "\n\n");
                         snackstotal = snackstotal + snacks.get(i).Calories;
                     }
-                    log.append("Total Calories for Snacks: " + snackstotal.toString() + "\n\n");
-                    if(breakfast.size() == 0) {
-                        log.append("Nothing in snacks!\n");
+                    snacks_log.append("Total Calories for Snacks: " + snackstotal.toString() + "\n\n");
+                    if(snacks.size() == 0) {
+                        snacks_log.append("Nothing in snacks!\n");
                     }
                     grandtotal = breakfasttotal + lunchtotal + dinnertotal + snackstotal;
-                    log.append("Total Calories consumed today: " + grandtotal.toString());
+                    snacks_log.append("\nTotal Calories consumed today: " + grandtotal.toString());
 
                     if(grandtotal >= Long.parseLong(cal_limit)) {
                         Long diff = grandtotal - Long.parseLong(cal_limit);
@@ -198,7 +215,15 @@ public class Log extends AppCompatActivity {
                 }
             }
             else {
-                log.setText("Log file not found!");
+                breakfast_log.setVisibility(View.INVISIBLE);
+                lunch_log.setVisibility(View.INVISIBLE);
+                dinner_log.setVisibility(View.INVISIBLE);
+                snacks_log.setVisibility(View.INVISIBLE);
+                lunch_title.setVisibility(View.INVISIBLE);
+                dinner_title.setVisibility(View.INVISIBLE);
+                snacks_title.setVisibility(View.INVISIBLE);
+                String log_error = "Daily log file not found!";
+                breakfast_title.setText(log_error);
             }
         }
     }

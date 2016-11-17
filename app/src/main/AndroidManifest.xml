@@ -19,7 +19,8 @@
         android:theme="@style/caloriecounter">
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateVisible|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,19 +50,19 @@
         </activity>
         <activity
             android:name=".AddEntry"
-            android:label="AddEntry"
+            android:label="Add Entry to Log"
             android:theme="@style/caloriecounter" />
         <activity
             android:name=".RegisterUser"
-            android:label="@string/title_activity_register_user"
+            android:label="Register New User"
             android:theme="@style/caloriecounter" />
         <activity
             android:name=".Graph"
-            android:label="Graph"
+            android:label="Daily Calorie Graph"
             android:theme="@style/caloriecounter" />
         <activity
             android:name=".ForgotPasswordActivity"
-            android:label="@string/title_activity_forgot_password"
+            android:label="Forgot Password?"
             android:parentActivityName=".LoginActivity"
             android:theme="@style/caloriecounter">
             <meta-data
@@ -70,10 +71,12 @@
         </activity>
         <activity
             android:name=".AddFood"
-            android:label="@string/title_activity_add_food"
+            android:label="Add New Food to Database"
             android:theme="@style/caloriecounter" />
         <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".Log"></activity>
+        <activity
+            android:name=".Log"
+            android:label="Daily Calorie Log" />
     </application>
 
 </manifest>

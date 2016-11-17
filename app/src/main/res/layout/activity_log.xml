@@ -26,17 +26,67 @@
             android:weightSum="1">
 
             <TextView
-                android:text="Nothing in the log yet!"
+                android:text="TextView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/breakfast_title"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:id="@+id/log"
+                android:id="@+id/breakfast_log"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_weight="0.72"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lunch_title"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lunch_log"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/dinner_title"
+                android:layout_weight="0.07"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dinner_log"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/snacks_title"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/snacks_log"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
         </LinearLayout>
     </ScrollView>
 
