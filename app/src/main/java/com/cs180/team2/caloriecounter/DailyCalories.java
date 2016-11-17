@@ -293,6 +293,7 @@ public class DailyCalories extends AppCompatActivity {
 
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void changePassword(){

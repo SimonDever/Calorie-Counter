@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,6 +15,12 @@
 
     <!-- Login progress -->
 
+    <ImageView
+        android:layout_width="281dp"
+        android:layout_height="262dp"
+        app:srcCompat="@drawable/caloriecounterlogo"
+        android:id="@+id/imageView" />
+
     <ProgressBar
         android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"
@@ -25,13 +32,14 @@
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="309dp">
+        android:layout_height="327dp">
 
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -57,7 +65,7 @@
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
+                    android:hint="Password"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
@@ -69,36 +77,38 @@
 
             <Button
                 android:id="@+id/email_sign_in_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+                android:layout_width="153dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Sign In"
-                android:textStyle="bold"
-                android:onClick="addUser" />
+                android:onClick="addUser"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button" />
 
             <Button
                 android:text="Forgot Username/Password?"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/forgot_password_button" />
+                android:id="@+id/forgot_password_button"
+                android:layout_weight="0.57" />
+
+            <Button
+                android:text="Sign in as guest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button3"
+                android:onClick="dailyCaloriesGUI" />
 
             <Button
                 android:text="Register"
-                android:layout_width="match_parent"
+                android:layout_width="129dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/register_button"
-                android:onClick="registration" />
+                android:onClick="registration"
+                android:translationX="200dp"
+                android:translationY="-144dp" />
 
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:text="Sign in as guest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button3"
-        android:onClick="dailyCaloriesGUI" />
 
 
 </LinearLayout>

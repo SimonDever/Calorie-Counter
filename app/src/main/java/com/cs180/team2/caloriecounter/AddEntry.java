@@ -43,6 +43,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 
 import static com.cs180.team2.caloriecounter.DailyCalories.choice;
 import static com.cs180.team2.caloriecounter.R.id.addcustomfoodbutton;
@@ -102,21 +103,52 @@ public class AddEntry extends AppCompatActivity {
                 Long FoodCalories;
 
                 ArrayList<FoodEntry> results = new ArrayList<FoodEntry>();
+                ArrayList<Double> similarities = new ArrayList<Double>();
+                LinkedList<FoodEntry> resultsSorted = new LinkedList<FoodEntry>();
+                LinkedList<Double> similaritiesSorted = new LinkedList<Double>();
                 int matches = 0;
 
                 for (DataSnapshot foodSnapshot: dataSnapshot.getChildren()) {
                     tag = (String)foodSnapshot.child("Tag").getValue();
                     Foodname = foodSnapshot.getKey();
-                    if (tag.equals(str) || Foodname.toLowerCase().equals(str)) {
+                    //if (tag.equals(str) || Foodname.toLowerCase().equals(str)) {
+                    double similarity1 = StringManip.similarity(tag, str);
+                    double similarity2 = StringManip.similarity(Foodname.toLowerCase(), str);
+                    if (similarity1 >= 75.0 || similarity2 * 1.1 >= 75.0) { // Check if searched item is 75% "similar" to a tag or food name entry
                         User = foodSnapshot.child("User").getValue(String.class);
                         FoodCalories = foodSnapshot.child("Calories").getValue(Long.class);
                         FoodDescription = foodSnapshot.child("Description").getValue(String.class);
                         FoodEntry foodresult = new FoodEntry(Foodname, FoodCalories, FoodDescription, tag, User);
                         //results += tag + "\n";
                         results.add(foodresult);
+                        similarities.add(Math.max(similarity1, similarity2 * 1.1));
                         matches++;
                     }
+
                 }
+
+                // Sort the results list
+                for (int i = 0; i < results.size(); i++) {
+                    boolean inserted = false;
+                    for (int j = 0; j < resultsSorted.size(); j++) {
+                        if (similarities.get(i) > similaritiesSorted.get(j)) {
+                            similaritiesSorted.add(j, similarities.get(i));
+                            resultsSorted.add(j, results.get(i));
+                            inserted = true;
+                            break;
+                        }
+                    }
+                    if (!inserted) {
+                        similaritiesSorted.add(similarities.get(i));
+                        resultsSorted.add(results.get(i));
+                    }
+                }
+                // Now put sorted list back into original array list
+                results.clear();
+                for (int i = 0; i < resultsSorted.size(); i++) {
+                    results.add(resultsSorted.get(i));
+                }
+
                 if (matches == 0) {
                     Context context = getApplicationContext();
                     CharSequence text = "No matches found!";
@@ -158,17 +190,6 @@ public class AddEntry extends AppCompatActivity {
                                         String Filename = Integer.toString(c.get(Calendar.MONTH)) + "." + Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "." + Integer.toString(c.get(Calendar.YEAR));
                                         Filename = Filename + "_" + username + ".txt"; //FILENAME: MM.DD.YYYY_USERNAME.txt
                                         File file = new File(dir, Filename);
-                                        if (!file.getParentFile().exists()) {
-                                            if (file.getParentFile().mkdirs()) {
-                                                System.out.println(file.getParentFile() + " created!");
-                                            }
-
-                                            try {
-                                                System.out.println(file.getCanonicalPath() + " about to be created!");
-                                            } catch (IOException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
 
                                         if (!file.exists()) { // ALL ENTRIES NEED ALL CHILDREN OR ELSE APP CRASHES
                                             try {

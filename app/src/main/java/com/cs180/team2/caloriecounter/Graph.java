@@ -199,7 +199,7 @@ public class Graph extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if(x.toString() != "") {
+                if(x.toString().length() <= 10 && x.toString() != "" && Integer.parseInt(x.toString()) <=50000) {
 
                     cal_limit = x.toString();
 
@@ -222,6 +222,34 @@ public class Graph extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
+                    else {
+                        try {
+                            FileOutputStream outputStream = new FileOutputStream(goalfile);
+                            outputStream.write(cal_limit.getBytes());
+                        } catch(IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+                else if(x.toString().length() > 10 || Integer.parseInt(x.toString()) > 50000 )
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Get a better hobby, fatty.";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+
+                if(Integer.parseInt(x.toString()) == 9001)
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Vegeta, what's the reading on his Calorie levels!? Its over 9000!";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
                 }
             }
         });

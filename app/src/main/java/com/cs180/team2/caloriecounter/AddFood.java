@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +53,7 @@ public class AddFood extends AppCompatActivity {
 
 
     private AutoCompleteTextView iname;
-    private AutoCompleteTextView icalories;
+    private EditText icalories;
     private AutoCompleteTextView idescription;
     private AutoCompleteTextView itag;
     //private Button verifyInfo;
@@ -69,7 +70,7 @@ public class AddFood extends AppCompatActivity {
 
         iname = (AutoCompleteTextView) findViewById(R.id.iname);
         idescription = (AutoCompleteTextView) findViewById(R.id.idescription);
-        icalories = (AutoCompleteTextView) findViewById(R.id.icalories);
+        icalories = (EditText) findViewById(R.id.icalories);
         itag = (AutoCompleteTextView) findViewById(R.id.itag);
 
         Button verifyPassword = (Button) findViewById(R.id.verifypass);
@@ -112,7 +113,7 @@ public class AddFood extends AppCompatActivity {
     private void registerFood()
     {
         final String fname = getString(iname);
-        final String cal = getString(icalories);
+        final String cal = icalories.getText().toString(); //TODO: CHECK LIMIT OF CALORIES HERE BRIAN
         final String des = getString(idescription);
         final String tag = getString(itag);
         final String user = LoginActivity.username;

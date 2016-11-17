@@ -16,24 +16,30 @@
 
     <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
-        android:layout_height="298dp"
+        android:layout_height="463dp"
         android:id="@+id/graph" />
 
-    <Button
-        android:text="Change Calorie Goal"
-        android:theme="@style/AppTheme.AppBarOverlay"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/changeGoal_button"
-        android:layout_weight="0.01" />
+        android:layout_height="match_parent">
 
-    <EditText
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/changeGoalInput"
+                android:layout_weight="1" />
+
+        <Button
+            android:text="Change Calorie Goal"
+            android:theme="@style/AppTheme.AppBarOverlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberSigned"
-            android:ems="10"
-            android:id="@+id/changeGoalInput"
-            android:layout_weight="0.03" />
+            android:id="@+id/changeGoal_button"
+            android:layout_weight="1" />
+    </LinearLayout>
 
 
 </LinearLayout>
