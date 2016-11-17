@@ -38,7 +38,8 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -76,26 +77,19 @@
 
             <Button
                 android:id="@+id/email_sign_in_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+                android:layout_width="153dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Sign In"
-                android:textStyle="bold"
-                android:onClick="addUser" />
+                android:onClick="addUser"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button" />
 
             <Button
                 android:text="Forgot Username/Password?"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/forgot_password_button" />
-
-            <Button
-                android:text="Register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/register_button"
-                android:onClick="registration" />
+                android:id="@+id/forgot_password_button"
+                android:layout_weight="0.57" />
 
             <Button
                 android:text="Sign in as guest"
@@ -103,6 +97,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button3"
                 android:onClick="dailyCaloriesGUI" />
+
+            <Button
+                android:text="Register"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_button"
+                android:onClick="registration"
+                android:translationX="200dp"
+                android:translationY="-144dp" />
 
         </LinearLayout>
     </ScrollView>

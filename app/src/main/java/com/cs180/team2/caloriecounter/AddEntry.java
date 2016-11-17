@@ -107,7 +107,8 @@ public class AddEntry extends AppCompatActivity {
                 for (DataSnapshot foodSnapshot: dataSnapshot.getChildren()) {
                     tag = (String)foodSnapshot.child("Tag").getValue();
                     Foodname = foodSnapshot.getKey();
-                    if (tag.equals(str) || Foodname.toLowerCase().equals(str)) {
+                    //if (tag.equals(str) || Foodname.toLowerCase().equals(str)) {
+                    if (StringManip.similarity(tag, str) >= 75.0 || StringManip.similarity(Foodname.toLowerCase(), str) >= 75.0) { // Check if searched item is 75% "similar" to a tag or food name entry
                         User = foodSnapshot.child("User").getValue(String.class);
                         FoodCalories = foodSnapshot.child("Calories").getValue(Long.class);
                         FoodDescription = foodSnapshot.child("Description").getValue(String.class);
@@ -158,17 +159,6 @@ public class AddEntry extends AppCompatActivity {
                                         String Filename = Integer.toString(c.get(Calendar.MONTH)) + "." + Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "." + Integer.toString(c.get(Calendar.YEAR));
                                         Filename = Filename + "_" + username + ".txt"; //FILENAME: MM.DD.YYYY_USERNAME.txt
                                         File file = new File(dir, Filename);
-                                        if (!file.getParentFile().exists()) {
-                                            if (file.getParentFile().mkdirs()) {
-                                                System.out.println(file.getParentFile() + " created!");
-                                            }
-
-                                            try {
-                                                System.out.println(file.getCanonicalPath() + " about to be created!");
-                                            } catch (IOException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
 
                                         if (!file.exists()) { // ALL ENTRIES NEED ALL CHILDREN OR ELSE APP CRASHES
                                             try {
