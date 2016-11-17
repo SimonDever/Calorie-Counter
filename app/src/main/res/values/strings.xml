@@ -25,12 +25,9 @@
 
     <array name="myImages">
         <item>@drawable/boba</item>
-        <item>@drawable/popcorn_chicken</item>
         <item>@drawable/seared_salmon</item>
         <item>@drawable/katsu</item>
-        <item>@drawable/burger</item>
         <item>@drawable/chicken</item>
-        <item>@drawable/icecream</item>
         <item>@drawable/meat</item>
         <item>@drawable/pork</item>
         <item>@drawable/ramen</item>
