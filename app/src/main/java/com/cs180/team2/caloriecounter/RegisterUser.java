@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,8 +32,27 @@ import java.util.Map;
 
 public class RegisterUser extends AppCompatActivity {
 
-    public static class User
-    {
+
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("RegisterUser Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+
+    }
+
+    public static class User {
         public String Name;
         public String Password;
         public Secret secretq;
@@ -48,27 +66,23 @@ public class RegisterUser extends AppCompatActivity {
 
     }
 
-    public static class UserByName
-    {
+    public static class UserByName {
         public String username;
         public String password;
         public Secret secretq;
 
-        public UserByName(String username, String password, String question, String answer)
-        {
+        public UserByName(String username, String password, String question, String answer) {
             this.username = username;
             this.password = password;
-            this.secretq = new Secret(question,answer);
+            this.secretq = new Secret(question, answer);
         }
     }
 
-    public static class Secret
-    {
+    public static class Secret {
         public String question;
         public String answer;
 
-        public Secret(String question, String answer)
-        {
+        public Secret(String question, String answer) {
             this.question = question;
             this.answer = answer;
         }
@@ -87,7 +101,6 @@ public class RegisterUser extends AppCompatActivity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,9 +123,13 @@ public class RegisterUser extends AppCompatActivity {
             public void onClick(View v) {
 
                 checkFields();
+                return;
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
     }
+
 
     public String getString(AutoCompleteTextView view) {
         return view.getText().toString();
@@ -137,8 +154,7 @@ public class RegisterUser extends AppCompatActivity {
         return false;
     }
 
-    private void registerUser()
-    {
+    private void registerUser() {
         final String fName = getString(iFullName);
         final String uName = getString(iUserName);
         final String pw = getString(iPassword);
@@ -150,8 +166,8 @@ public class RegisterUser extends AppCompatActivity {
         final DatabaseReference registeredusers = FirebaseDatabase.getInstance().getReferenceFromUrl("https://kaloriekounterk.firebaseio.com/registeredusers");
         final DatabaseReference userRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://kaloriekounterk.firebaseio.com/usersByName");
 
-        registeredusers.child(uName).setValue(new User (fName, pw, sq, sa));    //registeruser branch
-        userRef.child(fName).setValue(new UserByName(uName,pw, sq, sa));        //userByName branch
+        registeredusers.child(uName).setValue(new User(fName, pw, sq, sa));    //registeruser branch
+        userRef.child(fName).setValue(new UserByName(uName, pw, sq, sa));        //userByName branch
 
         Context context = getApplicationContext();
         CharSequence text = "Registration Successful";
@@ -165,67 +181,78 @@ public class RegisterUser extends AppCompatActivity {
 
     public void loginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        finish();
     }
 
-
-    private void checkFields()
-    {
+    static boolean passok = false;
+    private void checkFields() {
         String pw = iPassword.getText().toString();
         String verifyPass = iRePassword.getText().toString();
 
-        if (!isShort()) {
-            if (pw.equals(verifyPass)) {
 
-                final DatabaseReference registeredusers = FirebaseDatabase.getInstance().getReferenceFromUrl("https://kaloriekounterk.firebaseio.com/registeredusers");
-                ValueEventListener valueEventListener = registeredusers.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild(getString(iUserName))) {
-                            Context context = getApplicationContext();
-                            CharSequence text = "Not a unique username please try again";
-                            int duration = Toast.LENGTH_SHORT;
+        if (isShort()) {
+            return;
+        }
+        if (!pw.equals(verifyPass)) {
+            Context context = getApplicationContext();
+            CharSequence text = "Passwords don't match";
+            int duration = Toast.LENGTH_SHORT;
 
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.show();
-                        }
-                        else
-                        {
-                            //testText.setText(getString(iFullName));
-                            if((!getString(iSecretQ).isEmpty() && !getString(iSecretA).isEmpty()))
-                            {
-                                registerUser();
-                            }
-                            else
-                            {
-                                Context context1 = getApplicationContext();
-                                CharSequence text1 = "Secret Question and Secret Answer must be entered";
-                                int duration1 = Toast.LENGTH_SHORT;
-                                Toast toast1 = Toast.makeText(context1, text1, duration1);
-                                toast1.show();
-                            }
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            return;
+        }
+        else {
+            passok = true;
+        }
 
-                        }
+        if(iSecretQ.getText().toString().isEmpty() || iSecretA.getText().toString().isEmpty())
+        {
+            Context context = getApplicationContext();
+            CharSequence text = "Error with Secret Question/Secret Answer";
+            int duration = Toast.LENGTH_SHORT;
 
-                    }
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            return;
+        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
 
+        final DatabaseReference registeredusers = FirebaseDatabase.getInstance().getReferenceFromUrl("https://kaloriekounterk.firebaseio.com/registeredusers");
+
+        ValueEventListener valueEventListener = registeredusers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String check = iUserName.getText().toString();
+                //check = registeredusers.child(check);
+
+                if(dataSnapshot.hasChild(iUserName.getText().toString()))
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Error with username";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    return;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
             }
-            else
-            {
-                Context context = getApplicationContext();
-                CharSequence text = "Passwords don't match";
-                int duration = Toast.LENGTH_SHORT;
+        });
 
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
+        registeredusers.removeEventListener(valueEventListener);
+
+        if(passok)
+        {
+            registerUser();
+            return;
         }
     }
 

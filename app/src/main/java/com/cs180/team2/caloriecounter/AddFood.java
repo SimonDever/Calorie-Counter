@@ -22,7 +22,6 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,7 +60,6 @@ public class AddFood extends AppCompatActivity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,7 +138,16 @@ public class AddFood extends AppCompatActivity {
     private void checkFields()
     {
         if (!isShort()) {
-            registerFood();
+            if(Integer.parseInt(icalories.getText().toString()) < 9000)
+                registerFood();
+            else
+            {
+                Context context = getApplicationContext();
+                CharSequence text = "No.";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
         }
     }
 

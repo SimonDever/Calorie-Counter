@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,7 +20,6 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -45,7 +45,6 @@ public class DailyCalories extends AppCompatActivity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
 
     public static String choice = "";
     public static String cal_limit = ""; //CALORIE LIMIT GLOBAL STRING
@@ -212,10 +211,6 @@ public class DailyCalories extends AppCompatActivity {
             });
 
 
-
-            // ATTENTION: This was auto-generated to implement the App Indexing API.
-            // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     /**
@@ -234,25 +229,7 @@ public class DailyCalories extends AppCompatActivity {
                 .build();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
 
     public void addEntryBreakfast(View view) {
         choice = "Breakfast";
@@ -291,10 +268,14 @@ public class DailyCalories extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration); //Chanho: Toast is a popup notification that disappears automatically after a period of time
         toast.show();
 
+        username = "";
+
         Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
+       // finish();
     }
+
 
     public void changePassword(){
       Intent intent = new Intent(this, ChangePasswordActivity.class);
@@ -311,5 +292,6 @@ public class DailyCalories extends AppCompatActivity {
         Intent intent = new Intent(this, Log.class);
         startActivity(intent);
     }
+
 
 }
