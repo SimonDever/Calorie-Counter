@@ -380,8 +380,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void dailyCaloriesGUI(View view) {
-        username = "";
-        pw = "";
         Intent intent = new Intent(this, DailyCalories.class);
         startActivity(intent);
     }
