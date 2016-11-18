@@ -180,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
             final DatabaseReference registeredusers = FirebaseDatabase.getInstance().getReferenceFromUrl("https://kaloriekounterk.firebaseio.com/registeredusers");
             //final DatabaseReference User = registeredusers.child(email);  // Chanho: access firebase and search by email
 
-            final ValueEventListener valueEventListener = registeredusers.addValueEventListener(new ValueEventListener() {  //Chanho: Create listener that will obtain values of user
+            registeredusers.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     final String email = mEmailView.getText().toString();
@@ -236,7 +236,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
             //registeredusers.removeEventListener(valueEventListener);
-            if(loginOK)
+            if(loginOK || !username.isEmpty())
             {
                 dailyCalories();
             }
@@ -380,8 +380,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void dailyCaloriesGUI(View view) {
-        username = "";
-        pw = "";
         Intent intent = new Intent(this, DailyCalories.class);
         startActivity(intent);
     }
@@ -394,13 +392,11 @@ public class LoginActivity extends AppCompatActivity {
     public void registerUser() {
         Intent intent = new Intent(this, RegisterUser.class);
         startActivity(intent);
-        finish();
     }
 
     public void registration(View view) {
         Intent intent = new Intent(this, RegisterUser.class);
         startActivity(intent);
-        finish();
     }
 
 
