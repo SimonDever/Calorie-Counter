@@ -26,6 +26,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.*;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -98,16 +99,7 @@ public class LoginActivity extends AppCompatActivity {
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
 
         mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+
 
         mForgotPasswordView = findViewById(R.id.forgot_password_button);
 
@@ -151,6 +143,7 @@ public class LoginActivity extends AppCompatActivity {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+    static boolean loginOK = false;
     private void attemptLogin() {
 
         final String email = mEmailView.getText().toString();
@@ -187,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
             final DatabaseReference registeredusers = FirebaseDatabase.getInstance().getReferenceFromUrl("https://kaloriekounterk.firebaseio.com/registeredusers");
             //final DatabaseReference User = registeredusers.child(email);  // Chanho: access firebase and search by email
 
-            ValueEventListener valueEventListener = registeredusers.addValueEventListener(new ValueEventListener() {  //Chanho: Create listener that will obtain values of user
+            final ValueEventListener valueEventListener = registeredusers.addValueEventListener(new ValueEventListener() {  //Chanho: Create listener that will obtain values of user
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     final String email = mEmailView.getText().toString();
@@ -202,7 +195,8 @@ public class LoginActivity extends AppCompatActivity {
                         //textView.setText("Username: " + username + "\nFull Name: " + fullName + "\nPassword: " + pw);
 
                         if (password.equals(pw)) {
-                            dailyCalories(); //TODO: REMEMBER TO KEEP USERNAME/FULL NAME VALUES GLOBALLY FROM HERE ON
+                            //dailyCalories(); //TODO: REMEMBER TO KEEP USERNAME/FULL NAME VALUES GLOBALLY FROM HERE ON
+                            loginOK = true;
                         }
                         else {
                             Context context = getApplicationContext();
@@ -241,6 +235,12 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println("The read failed: " + databaseError.getMessage());
                 }
             });
+            //registeredusers.removeEventListener(valueEventListener);
+            if(loginOK)
+            {
+                dailyCalories();
+            }
+
         }
     }
 
@@ -381,27 +381,26 @@ public class LoginActivity extends AppCompatActivity {
 
     public void dailyCaloriesGUI(View view) {
         username = "";
+        pw = "";
         Intent intent = new Intent(this, DailyCalories.class);
         startActivity(intent);
-        finish();
     }
 
     public void dailyCalories() {
         Intent intent = new Intent(this, DailyCalories.class);
         startActivity(intent);
-        finish();
     }
 
     public void registerUser() {
         Intent intent = new Intent(this, RegisterUser.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
     public void registration(View view) {
         Intent intent = new Intent(this, RegisterUser.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
 
