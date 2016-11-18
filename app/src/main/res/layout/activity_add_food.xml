@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView13"
         android:paddingTop="10dp"
+
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="14sp" />
 
@@ -51,6 +52,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
+        android:maxLength="5"
         android:id="@+id/icalories"
         android:hint="Calories" />
 
