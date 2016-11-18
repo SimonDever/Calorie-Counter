@@ -195,8 +195,7 @@ public class LoginActivity extends AppCompatActivity {
                         //textView.setText("Username: " + username + "\nFull Name: " + fullName + "\nPassword: " + pw);
 
                         if (password.equals(pw)) {
-                            //dailyCalories(); //TODO: REMEMBER TO KEEP USERNAME/FULL NAME VALUES GLOBALLY FROM HERE ON
-                            loginOK = true;
+                            dailyCalories(); //TODO: REMEMBER TO KEEP USERNAME/FULL NAME VALUES GLOBALLY FROM HERE ON
                         }
                         else {
                             Context context = getApplicationContext();
@@ -236,10 +235,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
             //registeredusers.removeEventListener(valueEventListener);
-            if(loginOK || !username.isEmpty())
-            {
-                dailyCalories();
-            }
+            //if(loginOK || !username.isEmpty())
+            //{
+            //    dailyCalories();
+            //}
 
         }
     }
