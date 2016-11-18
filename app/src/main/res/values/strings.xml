@@ -29,9 +29,6 @@
         <item>@drawable/katsu</item>
         <item>@drawable/chicken</item>
         <item>@drawable/meat</item>
-        <item>@drawable/pork</item>
         <item>@drawable/ramen</item>
     </array>
-    <string name="title_activity_aaaaa">aaaaa</string>
-
 </resources>
