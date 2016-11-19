@@ -199,7 +199,17 @@ public class Graph extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if(x.toString().length() <= 10 && x.toString() != "" && Integer.parseInt(x.toString()) <=50000) {
+                if(x.toString().length() == 0)
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Please enter in a number that is less than or equal to 50000 or greater than or equal to 0";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    return;
+                }
+                if( x.toString().length() <= 10  && Integer.parseInt(x.toString()) <=50000) {
 
                     cal_limit = x.toString();
 
