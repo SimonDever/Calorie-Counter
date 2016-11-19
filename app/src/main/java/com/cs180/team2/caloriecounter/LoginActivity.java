@@ -388,6 +388,21 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void dailyGuest() {
+        username = "";
+        pw = "";
+        Intent intent = new Intent(this, DailyCalories.class);
+        startActivity(intent);
+    }
+
+    public void dailyGuest2(View view) {
+        username = "";
+        pw = "";
+        Intent intent = new Intent(this, DailyCalories.class);
+        startActivity(intent);
+    }
+
+
     public void registerUser() {
         Intent intent = new Intent(this, RegisterUser.class);
         startActivity(intent);
