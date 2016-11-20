@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,7 +22,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +48,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Random;
 
 import static com.cs180.team2.caloriecounter.DailyCalories.choice;
 import static com.cs180.team2.caloriecounter.R.id.addcustomfoodbutton;
@@ -82,6 +87,15 @@ public class AddEntry extends AppCompatActivity {
         }
         else
             customFood.setVisibility(View.VISIBLE);
+
+        final RelativeLayout background = (RelativeLayout) findViewById(R.id.content_add_entry); //START Select random background image
+        Resources res = getResources();
+        final TypedArray myImages = res.obtainTypedArray(R.array.myImages); //myImages array is in res/values/strings.xml
+        final Random random = new Random();
+
+        int randomInt = random.nextInt(myImages.length());
+        int drawableID = myImages.getResourceId(randomInt, -1);
+        background.setBackgroundResource(drawableID); //END Select random background image
     }
 
 

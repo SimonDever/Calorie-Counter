@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +39,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 import static android.R.attr.resource;
 import static com.cs180.team2.caloriecounter.DailyCalories.cal_limit;
@@ -264,5 +269,14 @@ public class Graph extends AppCompatActivity {
                 }
             }
         });
+
+        final LinearLayout background = (LinearLayout) findViewById(R.id.stat_graph); //START Select random background image
+        Resources res = getResources();
+        final TypedArray myImages = res.obtainTypedArray(R.array.myImages); //myImages array is in res/values/strings.xml
+        final Random random = new Random();
+
+        int randomInt = random.nextInt(myImages.length());
+        int drawableID = myImages.getResourceId(randomInt, -1);
+        background.setBackgroundResource(drawableID); //END Select random background image
     }
 }

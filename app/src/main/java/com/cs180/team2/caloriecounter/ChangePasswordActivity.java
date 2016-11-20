@@ -2,11 +2,16 @@ package com.cs180.team2.caloriecounter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
@@ -102,8 +108,17 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         }
                     }
                 });
+        final ConstraintLayout background = (ConstraintLayout) findViewById(R.id.activity_change_password); //START Select random background image
+        Resources res = getResources();
+        final TypedArray myImages = res.obtainTypedArray(R.array.myImages); //myImages array is in res/values/strings.xml
+        final Random random = new Random();
+
+        int randomInt = random.nextInt(myImages.length());
+        int drawableID = myImages.getResourceId(randomInt, -1);
+        background.setBackgroundResource(drawableID); //END Select random background image
 
     }
+
 
 
 

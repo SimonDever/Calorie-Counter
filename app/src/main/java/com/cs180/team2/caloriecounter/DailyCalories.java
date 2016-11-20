@@ -2,9 +2,13 @@ package com.cs180.team2.caloriecounter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +18,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +38,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 import java.util.Stack;
 
 import static com.cs180.team2.caloriecounter.LoginActivity.username;
@@ -210,7 +216,14 @@ public class DailyCalories extends AppCompatActivity {
                 }
             });
 
+        final CoordinatorLayout background = (CoordinatorLayout) findViewById(R.id.activity_daily_calories); //START Select random background image
+        Resources res = getResources();
+        final TypedArray myImages = res.obtainTypedArray(R.array.myImages); //myImages array is in res/values/strings.xml
+        final Random random = new Random();
 
+        int randomInt = random.nextInt(myImages.length());
+        int drawableID = myImages.getResourceId(randomInt, -1);
+        background.setBackgroundResource(drawableID); //END Select random background image
     }
 
     /**

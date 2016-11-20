@@ -3,11 +3,15 @@ package com.cs180.team2.caloriecounter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.media.MediaPlayer;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +27,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 import static com.cs180.team2.caloriecounter.DailyCalories.cal_limit;
 import static com.cs180.team2.caloriecounter.LoginActivity.username;
@@ -226,5 +231,14 @@ public class Log extends AppCompatActivity {
                 breakfast_title.setText(log_error);
             }
         }
+
+        final RelativeLayout background = (android.widget.RelativeLayout) findViewById(R.id.activity_log); //START Select random background image
+        Resources res = getResources();
+        final TypedArray myImages = res.obtainTypedArray(R.array.myImages); //myImages array is in res/values/strings.xml
+        final Random random = new Random();
+
+        int randomInt = random.nextInt(myImages.length());
+        int drawableID = myImages.getResourceId(randomInt, -1);
+        background.setBackgroundResource(drawableID); //END Select random background image
     }
 }

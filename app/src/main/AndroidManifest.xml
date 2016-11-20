@@ -54,6 +54,7 @@
         <activity
             android:name=".AddEntry"
             android:label="Add Entry to Log"
+            android:windowSoftInputMode="stateVisible|adjustPan"
             android:theme="@style/caloriecounter" />
         <activity
             android:name=".RegisterUser"
