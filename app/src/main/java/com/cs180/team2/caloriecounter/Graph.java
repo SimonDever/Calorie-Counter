@@ -39,6 +39,7 @@ import java.util.Calendar;
 import static android.R.attr.resource;
 import static com.cs180.team2.caloriecounter.DailyCalories.cal_limit;
 import static com.cs180.team2.caloriecounter.LoginActivity.username;
+import static com.cs180.team2.caloriecounter.R.color.primary_material_dark;
 
 /**
  * Created by briannguyen on 11/11/2016.
@@ -175,14 +176,14 @@ public class Graph extends AppCompatActivity {
 
         series.setDrawValuesOnTop(true);
         series.setTitle("Calorie Intake");
-        series.setColor(Color.CYAN);
-        series.setValuesOnTopColor(Color.RED);
+        series.setColor(Color.WHITE);
+        series.setValuesOnTopColor(Color.WHITE);
 
         graph.addSeries(series);
         graph.addSeries(line);
 
         line.setTitle("Calorie Goal");
-        line.setColor(Color.RED);
+        line.setColor(Color.rgb(102,19,31));
 
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
