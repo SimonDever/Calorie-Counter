@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        Button mforgotPasswordButton = (Button) findViewById(R.id.forgot_password_button);
+        TextView mforgotPasswordButton = (TextView) findViewById(R.id.forgot_password_button);
         mforgotPasswordButton.setOnClickListener( new OnClickListener() {
 
             @Override

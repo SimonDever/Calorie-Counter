@@ -75,37 +75,48 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <Button
-                android:id="@+id/email_sign_in_button"
-                android:layout_width="153dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Sign In"
-                android:onClick="addUser"
-                android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button" />
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
+                <Button
+                    android:id="@+id/email_sign_in_button"
+                    android:layout_width="153dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="Sign In"
+                    android:onClick="addUser"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button" />
+
+                <Button
+                    android:text="Register"
+                    android:layout_width="129dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/register_button"
+                    android:layout_gravity="right|center_horizontal"
+                    android:onClick="registration"
+                    android:translationX="0dp"
+                    android:translationY="0dp"
+                    android:layout_row="0"
+                    android:layout_column="1" />
+
+            </GridLayout>
+
+            <TextView
                 android:text="Forgot Username/Password?"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/forgot_password_button"
-                android:layout_weight="0.57" />
+                android:onClick="askQuestions"
+                android:clickable="true" />
 
             <Button
                 android:text="Sign in as guest"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button3"
+                android:layout_gravity="left|center_horizontal"
                 android:onClick="dailyGuest2" />
-
-            <Button
-                android:text="Register"
-                android:layout_width="129dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/register_button"
-                android:onClick="registration"
-                android:translationX="200dp"
-                android:translationY="-144dp" />
 
         </LinearLayout>
     </ScrollView>
