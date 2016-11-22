@@ -68,7 +68,7 @@ public class Graph extends AppCompatActivity {
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
         staticLabelsFormatter.setHorizontalLabels(new String[]{"", "Breakfast", "Lunch", "Dinner", "Snacks", "Total", ""});
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-        graph.getGridLabelRenderer().setTextSize(50f);
+        graph.getGridLabelRenderer().setTextSize(30f);
 
         final String root = Environment.getExternalStorageDirectory().toString();
         File dir = new File(root + "/daily_logs"); //FILE DIRECTORY
